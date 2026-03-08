@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Para la mejor mamá del mundo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="intro-active">
+    <section id="introScreen" class="intro-screen" aria-label="Pantalla de bienvenida">
+      <p class="intro-top">Para la mejor mamá del mundo</p>
+      <h2>Una sorpresa hecha con amor 💖</h2>
+      <button id="startExperienceBtn">Comenzar</button>
+    </section>
+
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <canvas id="sparkles"></canvas>
+    <canvas id="fireworks"></canvas>
+
+    <main class="card is-hidden" id="mainCard">
+      <p class="tag">8 de marzo · Día de la Madre</p>
+      <h1>Para ti, mamá ❤️</h1>
+      <p class="subtitle" id="typedText"></p>
+
+      <section class="letter-preview" aria-label="Vista previa de carta">
+        <p class="letter-icon">💌</p>
+        <p>Tenemos una carta especial para ti, mamá.</p>
+      </section>
+
+      <div class="actions">
+        <button id="surpriseBtn">Abrir carta para mamá ✨</button>
+      </div>
+    </main>
+
+    <section id="letterModal" class="letter-modal" aria-hidden="true">
+      <article class="letter-sheet" role="dialog" aria-modal="true" aria-label="Carta para mamá">
+        <button id="closeLetterBtn" class="close-letter" aria-label="Cerrar carta">×</button>
+        <h2 class="letter-step step-1">Carta para mamá</h2>
+        <section class="photo-wrap letter-step step-2" aria-label="Foto familiar" id="letterPhotoWrap">
+          <img src="assets/familia.jpg" alt="Foto familiar" id="familyPhoto" />
+          <div class="photo-glow"></div>
+        </section>
+        <blockquote class="letter-step step-3">
+          “Mamá, tu amor es la luz que siempre guía nuestro camino.
+          Gracias por abrazarnos con el alma cada día.”
+        </blockquote>
+        <p class="dedication letter-step step-4">
+          Dedicada para ti mamá, de parte de: Jereny Vera, Jeyco Vera, Matias Veras, Ami Vera e Izasku Vera ❤️
+        </p>
+      </article>
+    </section>
+
+    <div id="hearts"></div>
+    <audio id="bgMusic" src="assets/musica.mp3" autoplay loop preload="auto"></audio>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+Coloca aquí tu foto familiar con este nombre exacto:
+
+familia.jpg
+
+Ruta completa esperada:
+assets/familia.jpg
+
+Luego abre index.html en tu navegador.
