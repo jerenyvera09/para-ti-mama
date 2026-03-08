@@ -7,6 +7,7 @@ const startExperienceBtn = document.getElementById("startExperienceBtn");
 const mainCard = document.getElementById("mainCard");
 const typedText = document.getElementById("typedText");
 const surpriseBtn = document.getElementById("surpriseBtn");
+const soundFallbackBtn = document.getElementById("soundFallbackBtn");
 const bgMusic = document.getElementById("bgMusic");
 const heartsWrap = document.getElementById("hearts");
 const letterModal = document.getElementById("letterModal");
@@ -21,6 +22,7 @@ let charIndex = 0;
 let particles = [];
 let fireworksParticles = [];
 let typingStarted = false;
+let musicUnlocked = false;
 
 function typeWriter() {
   if (charIndex <= phrase.length) {
@@ -30,20 +32,47 @@ function typeWriter() {
   }
 }
 
-function tryPlayMusic() {
-  bgMusic.volume = 0.45;
-  const playPromise = bgMusic.play();
-  if (playPromise) {
-    playPromise.catch(() => {});
+function hideSoundFallback() {
+  soundFallbackBtn.hidden = true;
+}
+
+function showSoundFallback() {
+  if (!musicUnlocked) {
+    soundFallbackBtn.hidden = false;
   }
 }
 
-window.addEventListener("load", tryPlayMusic);
+async function tryPlayMusic(showFallbackOnError = false) {
+  bgMusic.volume = 0.45;
+  try {
+    await bgMusic.play();
+    musicUnlocked = true;
+    hideSoundFallback();
+    return true;
+  } catch (error) {
+    if (showFallbackOnError) {
+      showSoundFallback();
+    }
+    return false;
+  }
+}
+
+window.addEventListener("load", () => {
+  tryPlayMusic(false);
+});
+
 ["pointerdown", "touchstart", "keydown"].forEach((eventName) => {
-  window.addEventListener(eventName, tryPlayMusic, { once: true });
+  window.addEventListener(
+    eventName,
+    () => {
+      tryPlayMusic(true);
+    },
+    { once: true },
+  );
 });
 
 startExperienceBtn.addEventListener("click", () => {
+  tryPlayMusic(true);
   introScreen.classList.add("hide");
   body.classList.remove("intro-active");
   mainCard.classList.remove("is-hidden");
@@ -117,6 +146,7 @@ function openLetter() {
 }
 
 surpriseBtn.addEventListener("click", () => {
+  tryPlayMusic(true);
   surpriseBtn.classList.add("launch");
   setTimeout(() => surpriseBtn.classList.remove("launch"), 680);
 
@@ -126,6 +156,10 @@ surpriseBtn.addEventListener("click", () => {
 
   startFireworkShow();
   setTimeout(openLetter, 340);
+});
+
+soundFallbackBtn.addEventListener("click", () => {
+  tryPlayMusic(true);
 });
 
 closeLetterBtn.addEventListener("click", () => {

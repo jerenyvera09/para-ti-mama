@@ -248,6 +248,18 @@ button:active {
   transform: translateY(0) scale(0.99);
 }
 
+.sound-fallback {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 9;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  background: linear-gradient(110deg, #ffd36b, #ff6da8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
 .letter-modal {
   position: fixed;
   inset: 0;
@@ -563,5 +575,13 @@ button:active {
   button {
     width: 100%;
     padding: 12px 14px;
+  }
+
+  .sound-fallback {
+    width: auto;
+    right: 10px;
+    bottom: 10px;
+    padding: 9px 12px;
+    font-size: 0.82rem;
   }
 }
